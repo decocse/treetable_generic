@@ -3,18 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SearchcompnentComponent } from './searchcompnent/searchcompnent.component';
+import { SearchComponent } from './searchcompnent/searchcompnent.component';
 import { DataloadingComponent } from './dataloading/dataloading.component';
 import { TreenodeComponent } from './treenode/treenode.component';
 import { TreeComponent } from './tree/tree.component';
 import { DownloadComponent } from './download/download.component';
 //import {  CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { DataService } from '../data.service';
 
 @NgModule({
   //schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
-    SearchcompnentComponent,
+    SearchComponent,
     DataloadingComponent,
     TreenodeComponent,
     TreeComponent,
@@ -23,9 +25,10 @@ import { DownloadComponent } from './download/download.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule      
+    FormsModule,
+    HttpClientModule      
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
