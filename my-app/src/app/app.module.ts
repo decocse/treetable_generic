@@ -11,6 +11,8 @@ import { DownloadComponent } from './download/download.component';
 //import {  CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { DataService } from '../data.service';
+import { FilesizeComponent } from './filesize/filesize.component';
+
 
 @NgModule({
   //schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -20,7 +22,8 @@ import { DataService } from '../data.service';
     DataloadingComponent,
     TreenodeComponent,
     TreeComponent,
-    DownloadComponent
+    DownloadComponent,
+    FilesizeComponent
   ],
   imports: [
     BrowserModule,

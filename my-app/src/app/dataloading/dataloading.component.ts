@@ -61,7 +61,7 @@ export class DataloadingComponent {
       this.dataService.loadData(this.month, this.year).subscribe(
         data => {
           console.log('from data',data)
-          this.files = this.transformDataToTreeStructure(data);
+          this.files = data;
         },
         error => this.files = null
       );
@@ -69,34 +69,25 @@ export class DataloadingComponent {
   }
 
   private transformDataToTreeStructure(data: any[]): any[] {
-    // Create a map for quick access and modification
     const itemMap = new Map<number, any>();
   
-    // Initialize the map with a modified structure
+    // First, map all items by their ID and initialize children arrays
     data.forEach(item => {
-      itemMap.set(item.id, {
-        id: item.id,
-        name: item.name,
-        isFile: item.isFile,
-        children: item.isFile ? null : [] // Set children to null for files initially
-      });
+      itemMap.set(item.id, { ...item, children: [] });
     });
   
-    const rootItems: any[] = [];
-  
+    // Now, build the hierarchy by setting the parent-child relationships
     data.forEach(item => {
-      const currentItem = itemMap.get(item.id);
-      if (item.parentId && currentItem) {
+      if (item.parentId) {
         const parentItem = itemMap.get(item.parentId);
-        if (parentItem && parentItem.children) {
-          parentItem.children.push(currentItem); // Add current item to parent's children
+        if (parentItem) {
+          parentItem.children.push(itemMap.get(item.id));
         }
-      } else if (!item.parentId) {
-        rootItems.push(currentItem); // Add root items (items without parentId)
       }
     });
-    console.log('transform',rootItems)
-    return rootItems;
-  }
   
+    // Finally, extract the root items (items without a parentId)
+    console.log('hoi hoi less go',Array.from(itemMap.values()))
+    return Array.from(itemMap.values()).filter(item => !item.parentId);
+  }
 }
