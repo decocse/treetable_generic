@@ -6,8 +6,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
     <div class="search-container">
     <select class="select-style" [(ngModel)]="selectedMonth">
         <option value="1">January</option>
-        <option value="February">February</option>
-        <option value="March">March</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
         <option value="April">April</option>
         <option value="May">May</option>
         <option value="June">June</option>
@@ -78,6 +78,7 @@ export class SearchComponent {
   }
 
   onSearch() {
+    // Perform validation if necessary
     this.search.emit({ month: this.selectedMonth, year: this.selectedYear });
   }
 }

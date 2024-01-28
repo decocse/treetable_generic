@@ -12,6 +12,11 @@ import { DownloadComponent } from './download/download.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DataService } from '../data.service';
 import { FilesizeComponent } from './filesize/filesize.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -23,13 +28,18 @@ import { FilesizeComponent } from './filesize/filesize.component';
     TreenodeComponent,
     TreeComponent,
     DownloadComponent,
-    FilesizeComponent
+    FilesizeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule      
+    HttpClientModule,
+    BrowserAnimationsModule ,
+    MatTreeModule,
+    MatTableModule,
+    MatIconModule,
+    MatButtonModule     
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
