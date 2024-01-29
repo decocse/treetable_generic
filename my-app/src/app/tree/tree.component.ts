@@ -1,5 +1,11 @@
 import { Component, Input } from '@angular/core';
-
+export interface TreeNode {
+  id: number;
+  name: string;
+  isFile: boolean;
+  size?: number;
+  children?: TreeNode[];
+}
 @Component({
   selector: 'app-tree',
   template: ` <ul>
@@ -8,13 +14,15 @@ import { Component, Input } from '@angular/core';
   styleUrl: './tree.component.css'
 })
 export class TreeComponent {
-  @Input() set nodes(value: any[] | undefined){
+
+  public _nodes: TreeNode[] = [];
+  @Input()
+  set nodes(value: TreeNode[]) { // Expect an array, not undefined
     console.log('Nodes data:', value);
     this._nodes = value;
   }
 
-  get nodes(): any[] | undefined {
+  get nodes(): TreeNode[] { // Always return an array
     return this._nodes;
   }
-  private _nodes: any[] | undefined;
 }
